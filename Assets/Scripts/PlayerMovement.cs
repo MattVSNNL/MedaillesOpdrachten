@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     // Update is called once per frame
-    public void Update()
+    void Update()
     {
         _horizontal = 0;
 
@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
             _jumpRequest = true;
     }
 
-    public void Awake()
+    private void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -38,9 +38,6 @@ public class PlayerMovement : MonoBehaviour
         _left = _inputActions.FindAction("Left");
         _right = _inputActions.FindAction("Right");
     }
-
-    private void OnEnable() => _movementMap.Enable();
-    private void OnDisable() => _movementMap.Disable();
 
     private void FixedUpdate()
     {
@@ -55,7 +52,13 @@ public class PlayerMovement : MonoBehaviour
         _jumpRequest = false;
     }
 
-    private bool isGrounded() => Physics2D.OverlapCircle(_groundCheck.position, 0.15f, _groundLayer) != null;
+    private bool isGrounded()
+    {
+        return Physics2D.OverlapCircle(_groundCheck.position, 0.15f, _groundLayer) != null;
+    }
+
+    private void OnEnable() => _movementMap.Enable();
+    private void OnDisable() => _movementMap.Disable();
 
     private float MovementSpeed = 5f;
     private float JumpPower = 8f;
