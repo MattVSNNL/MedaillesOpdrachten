@@ -3,74 +3,70 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
-    public float movementSpeed = 5f;
-    public float jumpPower = 8f;
-
-    [SerializeField] private InputActionAsset inputActions;
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private LayerMask groundLayer;
-
-    private Rigidbody2D rb;
-    private SpriteRenderer sr;
-    private InputActionMap movementMap;
-    private InputAction jump, left, right;
-
-    private float horizontal;
-    private bool jumpRequest = false;
-
-    void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
-
-        movementMap = inputActions.FindActionMap("Movement");
-
-        jump = inputActions.FindAction("Jump");
-        left = inputActions.FindAction("Left");
-        right = inputActions.FindAction("Right");
-    }
-
-    void OnEnable() => movementMap.Enable();
-    void OnDisable() => movementMap.Disable();
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        horizontal = 0;
+        _horizontal = 0;
 
-        if (left.IsPressed())
+        if (_left.IsPressed())
         {
-            horizontal--;
-            sr.flipX = true;
+            _horizontal--;
+            _spriteRenderer.flipX = true;
         }
 
-        if (right.IsPressed())
+        if (_right.IsPressed())
         {
-            horizontal++;
-            sr.flipX = false;
+            _horizontal++;
+            _spriteRenderer.flipX = false;
         }
 
-        if (jump.WasPressedThisFrame())
-            jumpRequest = true;
+        if (_jump.WasPressedThisFrame())
+            _jumpRequest = true;
     }
 
-    void FixedUpdate()
+    public void Awake()
     {
-        rb.linearVelocity = new Vector2(horizontal * movementSpeed, rb.linearVelocity.y);
+        _rigidBody = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
 
-        if (jumpRequest && isGrounded())
+        _movementMap = _inputActions.FindActionMap("Movement");
+
+        _jump = _inputActions.FindAction("Jump");
+        _left = _inputActions.FindAction("Left");
+        _right = _inputActions.FindAction("Right");
+    }
+
+    private void OnEnable() => _movementMap.Enable();
+    private void OnDisable() => _movementMap.Disable();
+
+    private void FixedUpdate()
+    {
+        _rigidBody.linearVelocity = new Vector2(_horizontal * MovementSpeed, _rigidBody.linearVelocity.y);
+
+        if (_jumpRequest && isGrounded())
         {
-            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            _rigidBody.AddForce(Vector2.up * JumpPower, ForceMode2D.Impulse);
         }
-            
-
-        jumpRequest = false;
+        
+        _jumpRequest = false;
     }
 
-    bool isGrounded()
-    {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.15f, groundLayer) != null;
-    }
+    private bool isGrounded() => Physics2D.OverlapCircle(_groundCheck.position, 0.15f, _groundLayer) != null;
+
+    private float MovementSpeed = 5f;
+    private float JumpPower = 8f;
+
+    [SerializeField] private InputActionAsset _inputActions;
+    [SerializeField] private Transform _groundCheck;
+    [SerializeField] private LayerMask _groundLayer;
+
+    private Rigidbody2D _rigidBody;
+    private SpriteRenderer _spriteRenderer;
+    private InputActionMap _movementMap;
+    private InputAction _jump, _left, _right;
+
+    private float _horizontal;
+    private bool _jumpRequest = false;
+
 }
