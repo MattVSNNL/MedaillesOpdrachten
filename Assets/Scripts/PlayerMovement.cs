@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
     private InputActionMap movementMap;
     private InputAction jump, left, right;
 
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
 
         movementMap = inputActions.FindActionMap("Movement");
 
@@ -39,10 +41,16 @@ public class PlayerMovement : MonoBehaviour
         horizontal = 0;
 
         if (left.IsPressed())
+        {
             horizontal--;
+            sr.flipX = true;
+        }
 
         if (right.IsPressed())
+        {
             horizontal++;
+            sr.flipX = false;
+        }
 
         if (jump.WasPressedThisFrame())
             jumpRequest = true;
