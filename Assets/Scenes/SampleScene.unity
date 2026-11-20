@@ -571,7 +571,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -717,11 +717,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c491ebc2afef50148bbe32f17d7e8a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  movementSpeed: 5
-  jumpPower: 6
-  inputActions: {fileID: -944628639613478452, guid: 5f7edf5b30aba594abcb140a935dd599, type: 3}
-  groundCheck: {fileID: 1323236340}
-  groundLayer:
+  _inputActions: {fileID: -944628639613478452, guid: 5f7edf5b30aba594abcb140a935dd599, type: 3}
+  _groundCheck: {fileID: 1323236340}
+  _groundLayer:
     serializedVersion: 2
     m_Bits: 8
 --- !u!1 &1323236339
@@ -734,7 +732,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1323236340}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
