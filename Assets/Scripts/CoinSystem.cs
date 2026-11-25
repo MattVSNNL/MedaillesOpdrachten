@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class CoinSystem : MonoBehaviour
 {
+
     [SerializeField] private UIManager _uiManager;
     [SerializeField] private SoundManager _soundManager;
+
     void Awake()
     {
         if (_uiManager == null)

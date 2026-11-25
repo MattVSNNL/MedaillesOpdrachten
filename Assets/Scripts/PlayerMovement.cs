@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+
     private float MovementSpeed = 5f;
     private float JumpPower = 8f;
 
@@ -18,7 +19,6 @@ public class PlayerMovement : MonoBehaviour
     private float _horizontal;
     private bool _jumpRequest = false;
 
-    // Update is called once per frame
     void Update()
     {
         _horizontal = 0;
@@ -71,8 +71,15 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.OverlapCircle(_groundCheck.position, 0.15f, _groundLayer) != null;
     }
 
-    private void OnEnable() => _movementMap.Enable();
-    private void OnDisable() => _movementMap.Disable();
+    private void OnEnable()
+    {
+        _movementMap.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _movementMap.Disable();
+    }
 
 
 }
