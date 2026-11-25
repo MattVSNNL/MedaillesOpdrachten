@@ -5,15 +5,15 @@ public class SoundManager : MonoBehaviour
 {
     void Awake()
     {
-        audioSource = GetComponent<AudioSource>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void PlaySound()
     {
-        audioSource.PlayOneShot(pickupSound);
+        _audioSource.PlayOneShot(_pickupSound);
     }
 
-    [SerializeField] private AudioClip pickupSound;
-    private AudioSource audioSource;
+    [SerializeField] private AudioClip _pickupSound;
+    private AudioSource _audioSource;
 
 }
