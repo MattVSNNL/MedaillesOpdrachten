@@ -5,6 +5,8 @@ public class SoundManager : MonoBehaviour
 {
 
     [SerializeField] private AudioClip _pickupSound;
+    [SerializeField] private AudioClip _winnerSound;
+
     private AudioSource _audioSource;
 
     void Awake()
@@ -12,9 +14,14 @@ public class SoundManager : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    public void PlaySound()
+    public void PlayPickupSound()
     {
         _audioSource.PlayOneShot(_pickupSound);
+    }
+
+    public void PlayWinnerSound()
+    {
+        _audioSource.PlayOneShot(_winnerSound);
     }
 
 }

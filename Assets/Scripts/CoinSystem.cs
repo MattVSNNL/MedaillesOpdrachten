@@ -6,7 +6,7 @@ public class CoinSystem : MonoBehaviour
     [SerializeField] private UIManager _uiManager;
     [SerializeField] private SoundManager _soundManager;
 
-    void Awake()
+    void Start()
     {
         if (_uiManager == null)
             _uiManager = FindAnyObjectByType<UIManager>();
@@ -22,7 +22,7 @@ public class CoinSystem : MonoBehaviour
             return;
         }
 
-        _soundManager.PlaySound();
+        _soundManager.PlayPickupSound();
         _uiManager.AddScore();
         print("Item collected");
         Destroy(gameObject);
