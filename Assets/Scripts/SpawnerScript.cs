@@ -9,13 +9,12 @@ public class SpawnerScript : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            float angle = i * (360 / 5f) * Mathf.Rad2Deg;
-            Vector3 offset = new Vector3(Mathf.Cos(angle), 0f, 0f) * radius;
-
-            Instantiate(Coin, transform.position + offset, quaternion.identity);
+            Instantiate(Coin, transform.position + new Vector3(i * spacing, 0f, 0f), quaternion.identity);
         }
     }
 
     [SerializeField] private GameObject Coin;
     private float radius = 2f;
+    private float spacing = 1f;
+    private float coinAmount = 5f;
 }
