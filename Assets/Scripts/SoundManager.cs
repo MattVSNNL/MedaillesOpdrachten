@@ -3,6 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class SoundManager : MonoBehaviour
 {
+    [SerializeField] private AudioClip _pickupSound;
+    private AudioSource _audioSource;
+
     void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -13,7 +16,5 @@ public class SoundManager : MonoBehaviour
         _audioSource.PlayOneShot(_pickupSound);
     }
 
-    [SerializeField] private AudioClip _pickupSound;
-    private AudioSource _audioSource;
 
 }

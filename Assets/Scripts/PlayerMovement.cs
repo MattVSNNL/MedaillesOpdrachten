@@ -3,6 +3,20 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private float MovementSpeed = 5f;
+    private float JumpPower = 8f;
+
+    [SerializeField] private InputActionAsset _inputActions;
+    [SerializeField] private Transform _groundCheck;
+    [SerializeField] private LayerMask _groundLayer;
+
+    private Rigidbody2D _rigidBody;
+    private SpriteRenderer _spriteRenderer;
+    private InputActionMap _movementMap;
+    private InputAction _jump, _left, _right;
+
+    private float _horizontal;
+    private bool _jumpRequest = false;
 
     // Update is called once per frame
     void Update()
@@ -60,19 +74,5 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable() => _movementMap.Enable();
     private void OnDisable() => _movementMap.Disable();
 
-    private float MovementSpeed = 5f;
-    private float JumpPower = 8f;
-
-    [SerializeField] private InputActionAsset _inputActions;
-    [SerializeField] private Transform _groundCheck;
-    [SerializeField] private LayerMask _groundLayer;
-
-    private Rigidbody2D _rigidBody;
-    private SpriteRenderer _spriteRenderer;
-    private InputActionMap _movementMap;
-    private InputAction _jump, _left, _right;
-
-    private float _horizontal;
-    private bool _jumpRequest = false;
 
 }

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    private int _score;
+    [SerializeField] private TextMeshProUGUI _scoreText;
 
     public void AddScore()
     {
@@ -10,6 +12,4 @@ public class UIManager : MonoBehaviour
         _scoreText.text = _score.ToString();
     }
 
-    private int _score;
-    [SerializeField] private TextMeshProUGUI _scoreText;
 }

@@ -5,6 +5,11 @@ using UnityEngine.UIElements;
 public class SpawnerScript : MonoBehaviour
 {
 
+    [SerializeField] private GameObject _coin;
+    private float _radius = 2f;
+    private float _spacing = 1f;
+    private float _coinAmount = 5f;
+
     void Start()
     {
         for (int i = 0; i < 5; i++)
@@ -13,8 +18,4 @@ public class SpawnerScript : MonoBehaviour
         }
     }
 
-    [SerializeField] private GameObject _coin;
-    private float _radius = 2f;
-    private float _spacing = 1f;
-    private float _coinAmount = 5f;
 }

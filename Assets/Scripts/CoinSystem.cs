@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CoinSystem : MonoBehaviour
 {
+    [SerializeField] private UIManager _uiManager;
+    [SerializeField] private SoundManager _soundManager;
     void Awake()
     {
         if (_uiManager == null)
@@ -24,6 +26,4 @@ public class CoinSystem : MonoBehaviour
         Destroy(gameObject);
     }
 
-    [SerializeField] private UIManager _uiManager;
-    [SerializeField] private SoundManager _soundManager;
 }
