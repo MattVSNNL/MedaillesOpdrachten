@@ -9,12 +9,12 @@ public class SpawnerScript : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            Instantiate(Coin, transform.position + new Vector3(i * spacing, 0f, 0f), quaternion.identity);
+            Instantiate(_coin, transform.position + new Vector3(i * _spacing, 0f, 0f), quaternion.identity);
         }
     }
 
-    [SerializeField] private GameObject Coin;
-    private float radius = 2f;
-    private float spacing = 1f;
-    private float coinAmount = 5f;
+    [SerializeField] private GameObject _coin;
+    private float _radius = 2f;
+    private float _spacing = 1f;
+    private float _coinAmount = 5f;
 }
