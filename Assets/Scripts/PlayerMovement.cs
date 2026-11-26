@@ -25,14 +25,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (_left.IsPressed())
         {
-            Debug.Log("Moving Left");
+            //Debug.Log("Moving Left");
             _horizontal--;
             _spriteRenderer.flipX = true;
         }
 
         if (_right.IsPressed())
         {
-            Debug.Log("Moving Right");
+            //Debug.Log("Moving Right");
             _horizontal++;
             _spriteRenderer.flipX = false;
         }
@@ -81,5 +81,8 @@ public class PlayerMovement : MonoBehaviour
         _movementMap.Disable();
     }
 
-
+    public void SetSpeed(float value)
+    {
+        MovementSpeed = value;
+    }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class UIManager : MonoBehaviour
     private int _score;
     private int _streak;
     [SerializeField] private TextMeshProUGUI _scoreText;
+    [SerializeField] private TextMeshProUGUI _powerupText;
     [SerializeField] private SoundManager _soundManager;
 
     void Awake()
@@ -26,6 +28,25 @@ public class UIManager : MonoBehaviour
             _streak = 0;
             _soundManager.PlayWinnerSound();
         }
+    }
+
+    public void StartPowerupTimer(int time)
+    {
+        StartCoroutine(PowerupCountdown(time));
+    }
+
+    IEnumerator PowerupCountdown(int time)
+    {
+        print("Started");
+
+        _powerupText.gameObject.SetActive(true);
+        _powerupText.enabled = true;
+        for (int i = time; i > 0; i--)
+        {
+            _powerupText.text = i.ToString();
+            yield return new WaitForSeconds(1f);
+        }
+        _powerupText.gameObject.SetActive(false);
     }
 
 }
